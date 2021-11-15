@@ -2,7 +2,7 @@
 ![img.png](img.png)
 The main aim of this system is to monitor changes in state of environment, collect all data from different sensors, based on it user will be able to create some statistic reports or using colected data he can determine which parts of envirenment need hepl and then create eco projects that could improve situation in the future.
 
-###Technology stack:
+### Technology stack:
 #### Backend:
 - Java 17
 - Spring boot
