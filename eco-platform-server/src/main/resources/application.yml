@@ -1,0 +1,11 @@
+spring:
+  datasource:
+      url: "jdbc:postgresql://localhost:5432/ecoplatform"
+      username: "eco"
+      password: "eco"
+
+  jpa:
+    hibernate:
+      ddl-auto: none
+    show-sql: true
+    open-in-view: false
