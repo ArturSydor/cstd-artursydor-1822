@@ -10,6 +10,7 @@ create table if not exists users
     first_name      varchar(50)  not null,
     last_name       varchar(50)  not null,
     email           varchar(255) not null unique,
+    password        varchar(255) not null,
     active          boolean      not null default true,
     deleted         boolean      not null default false,
     organisation_id bigint       not null,

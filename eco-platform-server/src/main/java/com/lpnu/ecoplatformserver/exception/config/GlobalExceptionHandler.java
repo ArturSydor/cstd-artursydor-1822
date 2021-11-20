@@ -1,4 +1,4 @@
-package com.lpnu.ecoplatformserver.config.rest;
+package com.lpnu.ecoplatformserver.exception.config;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;

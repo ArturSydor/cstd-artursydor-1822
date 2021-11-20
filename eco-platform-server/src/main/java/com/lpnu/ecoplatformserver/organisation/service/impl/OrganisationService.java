@@ -8,7 +8,7 @@ import com.lpnu.ecoplatformserver.organisation.mapper.IOrganisationMapper;
 import com.lpnu.ecoplatformserver.organisation.repository.OrganisationRepository;
 import com.lpnu.ecoplatformserver.organisation.service.IOrganisationService;
 import com.lpnu.ecoplatformserver.user.entity.UserEntity;
-import com.lpnu.ecoplatformserver.user.service.IUserService;
+import com.lpnu.ecoplatformserver.user.service.IAuthService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -25,7 +25,7 @@ import static java.util.stream.Collectors.toSet;
 @RequiredArgsConstructor
 public class OrganisationService implements IOrganisationService {
 
-    private final IUserService userService;
+    private final IAuthService authService;
 
     private final OrganisationRepository organisationRepository;
 
@@ -55,12 +55,9 @@ public class OrganisationService implements IOrganisationService {
     public void create(OrganisationDto newOrganisation) {
         Objects.requireNonNull(newOrganisation);
         OrganisationEntity organisationForSave = organisationMapper.mapToEntity(newOrganisation);
-        UserEntity creator = organisationForSave.getCreator();
-        organisationForSave.setCreator(null);
 
         OrganisationEntity savedOrganisation = organisationRepository.save(organisationForSave);
-        creator.setOrganisation(savedOrganisation);
-        savedOrganisation.setCreator(userService.createUser(creator));
+        savedOrganisation.setCreator(authService.registerFirstOrganisationUser(newOrganisation.creator(), savedOrganisation));
         organisationRepository.save(savedOrganisation);
     }
 
