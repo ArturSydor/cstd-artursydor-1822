@@ -1,4 +1,4 @@
-package com.lpnu.ecoplatformserver.security.config;
+package com.lpnu.ecoplatformserver.config;
 
 import com.lpnu.ecoplatformserver.security.JwtAuthenticationFilter;
 import lombok.RequiredArgsConstructor;
@@ -19,6 +19,11 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @EnableWebSecurity
 @RequiredArgsConstructor
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
+    private static final String[] AUTH_WHITELIST = {
+            "/swagger-ui/**",
+            "/v3/api-docs/**"
+    };
+
     private final UserDetailsService userDetailsService;
     private final JwtAuthenticationFilter authenticationFilter;
 
@@ -37,6 +42,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .authorizeRequests()
                 .antMatchers(HttpMethod.POST, "/organisations/**")
+                .permitAll()
+                .and()
+                .authorizeRequests()
+                .antMatchers(AUTH_WHITELIST)
                 .permitAll()
                 .anyRequest()
                 .authenticated();

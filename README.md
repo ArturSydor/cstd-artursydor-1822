@@ -16,3 +16,6 @@ The main aim of this system is to monitor changes in state of environment, colle
 - Angular
 - Typescript
 - Angular Material
+
+## List of all endpoints
+http://localhost:8080/swagger-ui/index.html?configUrl=/v3/api-docs/swagger-config#/
