@@ -9,6 +9,7 @@ public record OrganisationDto(
         Long id,
         @NotNull String name,
         @Email String email,
-        boolean isMemberApprovalRequired,
+        boolean memberApprovalRequired,
+        boolean deleted,
         @NotNull UserDto creator) {
 }

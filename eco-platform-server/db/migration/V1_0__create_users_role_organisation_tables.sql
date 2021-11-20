@@ -21,7 +21,8 @@ create table if not exists organisation
     id                          bigserial primary key,
     name                        varchar(255) not null unique,
     email                       varchar(255) unique,
-    is_member_approval_required boolean      not null default true,
+    member_approval_required    boolean not null default true,
+    deleted                     boolean not null default false,
     creator_id                  bigint
     );
 
