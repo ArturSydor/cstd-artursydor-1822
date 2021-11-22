@@ -8,6 +8,7 @@ import {SimpleOrganisationPayload} from "../../model/simple-organisation-payload
 import {matchValidator} from "../confirmed-validator";
 import {UserRegistrationPayload} from "../user-registration-payload";
 import {Roles} from "../roles";
+import {DialogHelperService} from "../../shared/dialog-helper.service";
 
 @Component({
   selector: 'app-register-user',
@@ -23,7 +24,8 @@ export class RegisterUserComponent implements OnInit {
 
 
   constructor(private formBuilder: FormBuilder, private authService: AuthService,
-              private organisationService: OrganisationService, private router: Router) {
+              private organisationService: OrganisationService, private router: Router,
+              private errorHelper: DialogHelperService) {
     this.registerForm = this.formBuilder.group({
       requiredApproval: true,
       userFirstName: new FormControl('', Validators.required),
@@ -71,6 +73,7 @@ export class RegisterUserComponent implements OnInit {
       this.router.navigateByUrl('/register-success')
     }, error => {
       console.log('register fail');
+      this.errorHelper.showError(error.error);
     });
   }
 

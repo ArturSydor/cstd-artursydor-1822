@@ -8,6 +8,7 @@ import {RolePayload} from "../../model/role-payload";
 import {matchValidator} from "../confirmed-validator";
 import {OrganisationService} from "../../organisation.service";
 import {Roles} from "../roles";
+import {DialogHelperService} from "../../shared/dialog-helper.service";
 
 @Component({
   selector: 'app-register-organisation',
@@ -21,7 +22,8 @@ export class RegisterOrganisationComponent implements OnInit {
   creatorRole: RolePayload;
 
   constructor(private formBuilder: FormBuilder, private authService: AuthService,
-              private organisationService: OrganisationService, private router: Router) {
+              private organisationService: OrganisationService, private router: Router,
+              private errorHelper: DialogHelperService) {
     this.registerForm = this.formBuilder.group({
       organisationName: new FormControl('', Validators.required),
       organisationEmail: new FormControl('', [Validators.required, Validators.email]),
@@ -73,6 +75,7 @@ export class RegisterOrganisationComponent implements OnInit {
       this.router.navigateByUrl('/register-success')
     }, error => {
       console.log('register fail');
+      this.errorHelper.showError(error.error);
     });
   }
 

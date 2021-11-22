@@ -14,6 +14,13 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {NgxWebstorageModule} from "ngx-webstorage";
 import {HttpClientInterceptor} from "./http-client-interceptor";
+import { DialogComponent } from './components/dialog/dialog.component';
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatProgressBarModule} from "@angular/material/progress-bar";
+import {MatButtonModule} from "@angular/material/button";
+import {MatDialogModule} from "@angular/material/dialog";
+import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 
 @NgModule({
   declarations: [
@@ -23,7 +30,8 @@ import {HttpClientInterceptor} from "./http-client-interceptor";
     RegisterUserComponent,
     RegisterOrganisationComponent,
     RegisterSuccessComponent,
-    HomeComponent
+    HomeComponent,
+    DialogComponent
   ],
   imports: [
     BrowserModule,
@@ -32,6 +40,12 @@ import {HttpClientInterceptor} from "./http-client-interceptor";
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    BrowserAnimationsModule,
+    MatFormFieldModule,
+    MatDialogModule,
+    MatButtonModule,
+    MatProgressBarModule,
+    MatProgressSpinnerModule,
     NgxWebstorageModule.forRoot()
   ],
   providers: [{provide: HTTP_INTERCEPTORS, useClass: HttpClientInterceptor, multi: true}],

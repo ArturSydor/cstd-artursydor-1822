@@ -8,6 +8,7 @@ import {HomeComponent} from "./home/home.component";
 import {AuthGuard} from "./auth.guard";
 
 const routes: Routes = [
+  { path: '', redirectTo: '/login', pathMatch: 'full' },
   {path: 'register-organisation', component: RegisterOrganisationComponent},
   {path: 'register-user', component: RegisterUserComponent},
   {path: 'register-success', component: RegisterSuccessComponent},
