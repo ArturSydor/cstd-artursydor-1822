@@ -63,7 +63,8 @@ public class AuthService implements IAuthService {
         Authentication authentication = authenticationManager
                 .authenticate(new UsernamePasswordAuthenticationToken(loginDto.email(), loginDto.password()));
         SecurityContextHolder.getContext().setAuthentication(authentication);
-        return new AuthenticationResponseDto(jwtProvider.generateToken(authentication), loginDto.email());
+        return new AuthenticationResponseDto(jwtProvider.generateToken(authentication), loginDto.email(),
+                authentication.getAuthorities().iterator().next().getAuthority());
     }
 
     @Override

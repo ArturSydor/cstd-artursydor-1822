@@ -1,4 +1,4 @@
-import {UserRegistrationPayload} from "./UserRegistrationPayload";
+import {UserRegistrationPayload} from "./user-registration-payload";
 
 export class OrganisationRegistrationPayload {
   name: String;

@@ -2,11 +2,12 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {AuthService} from "../auth.service";
 import {Router} from "@angular/router";
-import {RolePayload} from "../../model/RolePayload";
+import {RolePayload} from "../../model/role-payload";
 import {OrganisationService} from "../../organisation.service";
-import {SimpleOrganisationPayload} from "../../model/SimpleOrganisationPayload";
-import {matchValidator} from "../ConfirmedValidator";
-import {UserRegistrationPayload} from "../UserRegistrationPayload";
+import {SimpleOrganisationPayload} from "../../model/simple-organisation-payload";
+import {matchValidator} from "../confirmed-validator";
+import {UserRegistrationPayload} from "../user-registration-payload";
+import {Roles} from "../roles";
 
 @Component({
   selector: 'app-register-user',
@@ -51,7 +52,7 @@ export class RegisterUserComponent implements OnInit {
     });
 
     this.authService.getAllRoles().subscribe((data: Array<RolePayload>) => {
-      this.defaultRole = data.find(role => role.name == 'INHABITANT');
+      this.defaultRole = data.find(role => role.name == Roles.INHABITANT);
     }, error => {
       console.error('Failed to get roles: ' + error);
     });

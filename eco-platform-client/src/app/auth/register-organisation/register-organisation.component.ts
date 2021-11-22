@@ -1,12 +1,13 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
-import {OrganisationRegistrationPayload} from "../OrganisationRegistrationPayload";
+import {OrganisationRegistrationPayload} from "../organisation-registration-payload";
 import {AuthService} from "../auth.service";
 import {Router} from "@angular/router";
-import {UserRegistrationPayload} from "../UserRegistrationPayload";
-import {RolePayload} from "../../model/RolePayload";
-import {matchValidator} from "../ConfirmedValidator";
+import {UserRegistrationPayload} from "../user-registration-payload";
+import {RolePayload} from "../../model/role-payload";
+import {matchValidator} from "../confirmed-validator";
 import {OrganisationService} from "../../organisation.service";
+import {Roles} from "../roles";
 
 @Component({
   selector: 'app-register-organisation',
@@ -50,7 +51,7 @@ export class RegisterOrganisationComponent implements OnInit {
 
   ngOnInit(): void {
     this.authService.getAllRoles().subscribe((data: Array<RolePayload>) => {
-      this.creatorRole = data.find(role => role.name == 'MANAGER');
+      this.creatorRole = data.find(role => role.name == Roles.MANAGER);
     }, error => {
       console.error('Failed to get roles: ' + error);
     })

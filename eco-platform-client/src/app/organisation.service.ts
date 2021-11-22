@@ -1,8 +1,8 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {OrganisationRegistrationPayload} from "./auth/OrganisationRegistrationPayload";
+import {OrganisationRegistrationPayload} from "./auth/organisation-registration-payload";
 import {Observable} from "rxjs";
-import {SimpleOrganisationPayload} from "./model/SimpleOrganisationPayload";
+import {SimpleOrganisationPayload} from "./model/simple-organisation-payload";
 import {error} from "protractor";
 
 @Injectable({

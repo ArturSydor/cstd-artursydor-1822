@@ -1,5 +1,5 @@
-import {RolePayload} from "../model/RolePayload";
-import {SimpleOrganisationPayload} from "../model/SimpleOrganisationPayload";
+import {RolePayload} from "../model/role-payload";
+import {SimpleOrganisationPayload} from "../model/simple-organisation-payload";
 
 export class UserRegistrationPayload {
   firstName: String;
