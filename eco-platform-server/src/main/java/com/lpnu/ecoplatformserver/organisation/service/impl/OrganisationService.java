@@ -55,6 +55,7 @@ public class OrganisationService implements IOrganisationService {
     public void create(OrganisationDto newOrganisation) {
         Objects.requireNonNull(newOrganisation);
         OrganisationEntity organisationForSave = organisationMapper.mapToEntity(newOrganisation);
+        organisationForSave.setCreator(null);
 
         OrganisationEntity savedOrganisation = organisationRepository.save(organisationForSave);
         savedOrganisation.setCreator(authService.registerFirstOrganisationUser(newOrganisation.creator(), savedOrganisation));

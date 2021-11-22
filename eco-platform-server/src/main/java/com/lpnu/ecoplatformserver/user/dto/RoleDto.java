@@ -1,9 +1,9 @@
 package com.lpnu.ecoplatformserver.user.dto;
 
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.NotEmpty;
 
 public record RoleDto(
         Integer id,
-        @NotNull String name
+        @NotEmpty String name
 ) {
 }

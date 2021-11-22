@@ -24,7 +24,7 @@ public class AuthController {
 
     @PostMapping("/registration")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void signUp(@RequestBody @Valid UserDto registrationRequest) {
+    public void register(@RequestBody @Valid UserDto registrationRequest) {
         authService.register(registrationRequest);
     }
 }

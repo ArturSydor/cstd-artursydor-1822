@@ -22,3 +22,11 @@ html {
   margin-right: 20%;
   text-align: center;
 }
+
+.rg-input {
+  margin: 20px;
+}
+
+.input-error {
+  color: red;
+}

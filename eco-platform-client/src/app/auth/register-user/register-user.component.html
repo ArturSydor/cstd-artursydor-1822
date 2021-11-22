@@ -1,1 +1,54 @@
-<p>register-user works!</p>
+<div class="container justify-content-center">
+  <form class="form-auth" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+    <h1 class="h3 mb-3 font-weight-normal">User data</h1>
+    <div class="form-floating rg-input">
+      <input type="text" id="inputUserFirstName" [formControlName]="'userFirstName'" class="form-control"
+             placeholder="First name">
+      <label for="inputUserFirstName" class="sr-only">First name</label>
+      <span
+        *ngIf="!registerForm.get('userFirstName').valid && registerForm.get('userFirstName').touched"
+        class="input-error">First name is required</span>
+    </div>
+    <div class="form-floating rg-input">
+      <input type="text" id="inputUserLastName" [formControlName]="'userLastName'" class="form-control"
+             placeholder="Last name">
+      <label for="inputUserLastName" class="sr-only">Last name</label>
+      <span
+        *ngIf="!registerForm.get('userLastName').valid && registerForm.get('userLastName').touched" class="input-error">Last name  is required</span>
+    </div>
+    <div class="form-floating rg-input">
+      <input type="email" id="inputUserEmail" [formControlName]="'userEmail'" class="form-control" placeholder="Email">
+      <label for="inputUserEmail" class="sr-only">Email</label>
+      <span
+        *ngIf="!registerForm.get('userEmail').valid && registerForm.get('userEmail').touched" class="input-error">Please provide a valid email</span>
+    </div>
+    <div class="form-floating rg-input">
+      <input type="password" id="inputUserPassword" [formControlName]="'userPassword'" class="form-control"
+             placeholder="Password" (ngModelChange)="onInputChange()">
+      <label for="inputUserPassword" class="sr-only">Password</label>
+      <span
+        *ngIf="!registerForm.get('userPassword').valid && registerForm.get('userPassword').touched" class="input-error">Password is required</span>
+    </div>
+    <div class="form-floating rg-input">
+      <input type="password" id="inputUserConfirmPassword" [formControlName]="'userConfirmPassword'"
+             class="form-control" placeholder="Confirm password">
+      <label for="inputUserConfirmPassword" class="sr-only">Confirm password</label>
+      <span
+        *ngIf="!registerForm.get('userConfirmPassword').valid && registerForm.get('userConfirmPassword').touched"
+        class="input-error">Confirm password  is required and must be equal password</span>
+    </div>
+    <div class="form-group rg-input">
+      <select [(ngModel)]="userRegisterPayload.organisation" [formControlName]="'organisation'" class="form-select">
+        <option [ngValue]="null">Select an organisation</option>
+        <option *ngFor="let organisation of availableOrganisations" [ngValue]="organisation">
+          {{ organisation.name }}
+        </option>
+      </select>
+      <span
+        *ngIf="!registerForm.get('organisation').valid && registerForm.get('organisation').touched"
+        class="input-error">Organisation is required</span>
+    </div>
+    <button class="btn btn-lg btn-success btn-block" type="submit" [disabled]="!registerForm.valid">Register</button>
+  </form>
+  <br/>
+</div>
