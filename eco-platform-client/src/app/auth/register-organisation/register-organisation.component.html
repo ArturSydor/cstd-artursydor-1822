@@ -1,0 +1,20 @@
+<div class="container justify-content-center">
+  <form class="form-auth" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+    <div>
+      <h1 class="h3 mb-3 font-weight-normal">Organisation registration</h1>
+      <div class="form-group">
+        <label for="inputName" class="sr-only">Name</label>
+        <input type="text" id="inputName" [formControlName]="'name'" class="form-control" placeholder="Name">
+      </div>
+      <div class="form-group">
+        <label for="inputEmail" class="sr-only">Email</label>
+        <input type="email" id="inputEmail" [formControlName]="'email'" class="form-control" placeholder="Email">
+      </div>
+      <div class="form-group">
+        <label for="inputRequiredApproval" class="sr-only">Required approval for new member</label>
+        <input type="checkbox" id="inputRequiredApproval" [formControlName]="'requiredApproval'" class="form-control">
+      </div>
+      <button class="btn btn-lg btn-primary btn-block" type="submit">Next</button>
+    </div>
+  </form>
+</div>
