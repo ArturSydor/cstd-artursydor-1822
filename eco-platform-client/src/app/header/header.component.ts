@@ -23,6 +23,10 @@ export class HeaderComponent implements OnInit {
     return this.authService.isAuthenticated();
   }
 
+  visibleForManagers(): boolean {
+    return this.authService.isAuthenticatedManager();
+  }
+
   logout() {
     this.askForConfirmation();
   }

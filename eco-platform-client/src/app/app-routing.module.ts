@@ -6,6 +6,7 @@ import {RegisterUserComponent} from "./auth/register-user/register-user.componen
 import {RegisterSuccessComponent} from "./auth/register-success/register-success.component";
 import {HomeComponent} from "./home/home.component";
 import {AuthGuard} from "./auth.guard";
+import {JoinRequestsComponent} from "./user/join-requests/join-requests.component";
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -13,7 +14,8 @@ const routes: Routes = [
   {path: 'register-user', component: RegisterUserComponent},
   {path: 'register-success', component: RegisterSuccessComponent},
   {path: 'login', component: LoginComponent},
-  {path: 'home', component: HomeComponent, canActivate: [AuthGuard]}
+  {path: 'home', component: HomeComponent, canActivate: [AuthGuard]},
+  {path: 'organisation-join-requests', component: JoinRequestsComponent, canActivate: [AuthGuard]}
 ];
 
 @NgModule({

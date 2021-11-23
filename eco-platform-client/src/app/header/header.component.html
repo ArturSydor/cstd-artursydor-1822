@@ -6,6 +6,7 @@
       </div>
       <div class="col-md-6" *ngIf="isVisible()">
         <button class="logout btn btn-default" (click)="logout()">Logout</button>
+        <a href="/organisation-join-requests" class="login btn btn-default" *ngIf="visibleForManagers()">Join requests</a>
       </div>
       <div class="col-md-6" *ngIf="!isVisible()">
         <a href="/login" class="login btn btn-default">Login</a>

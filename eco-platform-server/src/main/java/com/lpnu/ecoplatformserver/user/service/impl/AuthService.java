@@ -4,6 +4,7 @@ import com.lpnu.ecoplatformserver.exception.DuplicatedEmailException;
 import com.lpnu.ecoplatformserver.exception.NoLoggedInUserException;
 import com.lpnu.ecoplatformserver.organisation.entity.OrganisationEntity;
 import com.lpnu.ecoplatformserver.security.JwtProvider;
+import com.lpnu.ecoplatformserver.security.OrganisationUser;
 import com.lpnu.ecoplatformserver.user.dto.AuthenticationResponseDto;
 import com.lpnu.ecoplatformserver.user.dto.UserDto;
 import com.lpnu.ecoplatformserver.user.dto.UserLoginDto;
@@ -44,6 +45,9 @@ public class AuthService implements IAuthService {
         checkIfUserNotExist(registrationDto.email());
         UserEntity userEntity = userMapper.mapToEntity(registrationDto);
         userEntity.setPassword(encryptPassword(userEntity.getPassword()));
+        if (userEntity.getOrganisation().isMemberApprovalRequired()) {
+            userEntity.setActive(Boolean.FALSE);
+        }
         return userRepository.save(userEntity).getId();
     }
 
@@ -55,6 +59,7 @@ public class AuthService implements IAuthService {
         UserEntity user = userMapper.mapToEntity(userDto);
         user.setOrganisation(organisationEntity);
         user.setPassword(encryptPassword(user.getPassword()));
+        user.setActive(Boolean.TRUE);
         return userRepository.save(user);
     }
 
@@ -64,7 +69,8 @@ public class AuthService implements IAuthService {
                 .authenticate(new UsernamePasswordAuthenticationToken(loginDto.email(), loginDto.password()));
         SecurityContextHolder.getContext().setAuthentication(authentication);
         return new AuthenticationResponseDto(jwtProvider.generateToken(authentication), loginDto.email(),
-                authentication.getAuthorities().iterator().next().getAuthority());
+                authentication.getAuthorities().iterator().next().getAuthority(),
+                ((OrganisationUser) authentication.getPrincipal()).getOrganisationId());
     }
 
     @Override

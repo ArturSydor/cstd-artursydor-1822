@@ -21,6 +21,7 @@ import {MatProgressBarModule} from "@angular/material/progress-bar";
 import {MatButtonModule} from "@angular/material/button";
 import {MatDialogModule} from "@angular/material/dialog";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
+import { JoinRequestsComponent } from './user/join-requests/join-requests.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
     RegisterOrganisationComponent,
     RegisterSuccessComponent,
     HomeComponent,
-    DialogComponent
+    DialogComponent,
+    JoinRequestsComponent
   ],
   imports: [
     BrowserModule,
