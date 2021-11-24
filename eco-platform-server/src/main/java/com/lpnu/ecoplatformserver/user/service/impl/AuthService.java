@@ -1,6 +1,6 @@
 package com.lpnu.ecoplatformserver.user.service.impl;
 
-import com.lpnu.ecoplatformserver.exception.DuplicatedEmailException;
+import com.lpnu.ecoplatformserver.exception.DuplicatedEntryException;
 import com.lpnu.ecoplatformserver.exception.NoLoggedInUserException;
 import com.lpnu.ecoplatformserver.organisation.entity.OrganisationEntity;
 import com.lpnu.ecoplatformserver.security.JwtProvider;
@@ -90,7 +90,7 @@ public class AuthService implements IAuthService {
 
     private void checkIfUserNotExist(String email) {
         if (userRepository.findByEmail(email).isPresent()) {
-            throw new DuplicatedEmailException("Email [%s] already exists", email);
+            throw new DuplicatedEntryException("Email [%s] already exists", email);
         }
     }
 }
