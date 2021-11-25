@@ -11,7 +11,9 @@ public interface IUserService {
 
     UserEntity findOne(Long id);
 
-    UserEntity createUser(UserEntity user);
+    UserEntity findOneByEmail(String email);
+
+    void updateUser(UserDto user);
 
     void activateUser(Long id);
 

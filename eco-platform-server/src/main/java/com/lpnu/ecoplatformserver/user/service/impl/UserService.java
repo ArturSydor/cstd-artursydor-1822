@@ -1,5 +1,6 @@
 package com.lpnu.ecoplatformserver.user.service.impl;
 
+import com.lpnu.ecoplatformserver.exception.DuplicatedEntryException;
 import com.lpnu.ecoplatformserver.exception.EntityNotFoundException;
 import com.lpnu.ecoplatformserver.user.dto.UserDto;
 import com.lpnu.ecoplatformserver.user.entity.UserEntity;
@@ -41,9 +42,27 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public UserEntity createUser(UserEntity user) {
+    public UserEntity findOneByEmail(String email) {
+        Objects.requireNonNull(email);
+        return userRepository.findByEmail(email)
+                .orElseThrow(() -> new EntityNotFoundException("User with email=%s doesn't exists", email));
+    }
+
+    @Override
+    public void updateUser(UserDto user) {
         Objects.requireNonNull(user);
-        return userRepository.save(user);
+
+        var existingUser = findOne(user.id());
+
+        checkIfEmailDoesNotExist(user, existingUser);
+
+        existingUser.setFirstName(user.firstName());
+        existingUser.setLastName(user.lastName());
+        existingUser.setEmail(user.email());
+        existingUser.setDeleted(user.deleted());
+        existingUser.setActive(user.active());
+
+        userRepository.save(existingUser);
     }
 
     @Override
@@ -51,6 +70,15 @@ public class UserService implements IUserService {
         UserEntity user = findOne(id);
         user.setActive(Boolean.TRUE);
         userRepository.save(user);
+    }
+
+    private void checkIfEmailDoesNotExist(UserDto dto, UserEntity entity) {
+        if (!Objects.equals(dto.email(), entity.getEmail())) {
+            userRepository.findByEmail(dto.email())
+                    .ifPresent(user -> {
+                        throw new DuplicatedEntryException("Email [%s] already exists", user.getEmail());
+                    });
+        }
     }
 
 }
