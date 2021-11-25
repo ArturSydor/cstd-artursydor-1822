@@ -5,6 +5,7 @@ import com.lpnu.ecoplatformserver.user.entity.UserEntity;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Data
 @Entity
@@ -28,6 +29,8 @@ public class EcoProjectEntity {
     private boolean published;
 
     private boolean closed;
+
+    private LocalDateTime created = LocalDateTime.now();
 
     @ManyToOne
     @JoinColumn(name = "creator_id")

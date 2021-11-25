@@ -1,3 +1,43 @@
-<div>
-  <h1 class="align-content-center rg-input">Home page!</h1>
+<div class="container">
+  <div class="rg-input">
+    <label for="inputOnlyPersonalProjects" class="sr-only">Show only my projects</label>
+    <input type="checkbox" id="inputOnlyPersonalProjects" class="form-check-input"
+           (ngModelChange)="reloadProjects(!onlyPersonalProjects)" [(ngModel)]="onlyPersonalProjects">
+  </div>
+  <div fxLayout="row wrap" fxLayoutGap="16px grid">
+    <div fxFlex="33%" fxFlex.xs="100%" fxFlex.sm="33%" *ngFor="let project of ecoProjects | async">
+      <mat-card class="mat-elevation-z4 project">
+        <mat-card-header>
+          <mat-card-title>{{project.name}}</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <p [innerHTML]="project.description"></p>
+          <p>
+            Creator: {{project.creator.firstName}} {{project.creator.lastName}}
+          </p>
+          <p>
+            Published: {{mappingHelper.mapBooleanToYesNoString(project.published)}}
+          </p>
+          <p>
+            Closed: {{mappingHelper.mapBooleanToYesNoString(project.closed)}}
+          </p>
+          <p>
+            Total points: {{project.points}}
+          </p>
+          <p>
+            Allowed points per one user: {{project.maxAllowedPointsPerUser}}
+          </p>
+        </mat-card-content>
+        <mat-card-actions>
+          <button class="btn-success" mat-button (click)="supportProject(project.id)"  *ngIf="!onlyForCreators(project.creator.email)" [disabled]="!project.published || project.closed">SUPPORT</button>
+          <button href="/" class="btn-success" mat-button (click)="publishProject(project)" *ngIf="onlyForCreators(project.creator.email)"
+             [disabled]="project.published || project.closed">PUBLISH</button>
+          <button href="/" class="btn-light" mat-button (click)="editProject(project)" *ngIf="onlyForCreators(project.creator.email)"
+             [disabled]="project.published || project.closed">EDIT</button>
+          <button class="btn-danger" mat-button (click)="closeProject(project)" *ngIf="onlyForCreators(project.creator.email) && project.published && !project.closed">CLOSE</button>
+          <button class="btn-danger" mat-button (click)="removeProject(project.id)" *ngIf="onlyForCreators(project.creator.email) && !project.published">DELETE</button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </div>
 </div>

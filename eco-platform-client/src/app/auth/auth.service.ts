@@ -45,6 +45,10 @@ export class AuthService {
     return this.localStorageService.retrieve("organisationId")
   }
 
+  getCurrentLogin(): String {
+    return this.localStorageService.retrieve("email")
+  }
+
   logout() {
     this.localStorageService.clear("authenticationToken")
     this.localStorageService.clear("email");

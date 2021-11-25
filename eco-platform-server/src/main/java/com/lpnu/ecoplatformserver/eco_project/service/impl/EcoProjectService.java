@@ -38,8 +38,10 @@ public class EcoProjectService implements IEcoProjectService {
     private final IEcoProjectMapper ecoProjectMapper;
 
     @Override
-    public List<EcoProjectDto> getAll() {
-        return ecoProjectRepository.findAllByOrganisation_IdAndCreator_IdOrPublishedTrue(currentUser.getOrganisationId(), currentUser.getUserId())
+    public List<EcoProjectDto> getAll(boolean personalOnly) {
+        return (personalOnly ? ecoProjectRepository.findAllByCreator_Id(currentUser.getUserId(), EcoProjectRepository.DEFAULT_SORT) :
+                ecoProjectRepository.findAllByOrganisation_IdAndCreator_IdOrPublishedTrue(currentUser.getOrganisationId(), currentUser.getUserId(),
+                        EcoProjectRepository.DEFAULT_SORT))
                 .stream()
                 .map(ecoProjectMapper::mapToDto)
                 .collect(Collectors.toList());
@@ -73,12 +75,17 @@ public class EcoProjectService implements IEcoProjectService {
     }
 
     @Override
+    public EcoProjectEntity save(EcoProjectEntity entity) {
+        return ecoProjectRepository.save(entity);
+    }
+
+    @Override
     public EcoProjectDto update(EcoProjectDto projectDto) {
         Objects.requireNonNull(projectDto);
 
         EcoProjectEntity existingEntity = findOne(projectDto.id());
         checkCreator(projectDto.creator().id());
-        checkPublishState(existingEntity.isPublished());
+        checkPublishState(existingEntity.isPublished(), existingEntity.isClosed() != projectDto.closed());
         ecoProjectRepository.findByName(projectDto.name()).ifPresent(entity -> checkProjectUniqueNamePerOrganisation(entity, projectDto));
         checkPointsNotUpdated(existingEntity, projectDto);
 
@@ -89,7 +96,7 @@ public class EcoProjectService implements IEcoProjectService {
     @Override
     public void delete(Long id) {
         EcoProjectEntity entity = findOne(id);
-        checkPublishState(entity.isPublished());
+        checkPublishState(entity.isPublished(), Boolean.FALSE);
         checkCreator(entity.getCreator().getId());
         ecoProjectRepository.delete(entity);
     }
@@ -124,8 +131,8 @@ public class EcoProjectService implements IEcoProjectService {
      *
      * @throws @PublishedEntityModificationException
      */
-    private void checkPublishState(boolean isPublished) {
-        if (isPublished) {
+    private void checkPublishState(boolean isPublished, boolean isClosing) {
+        if (isPublished && !isClosing) {
             throw new PublishedEntityModificationException("Any modification is not allowed for published projects");
         }
     }

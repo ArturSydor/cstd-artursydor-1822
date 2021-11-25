@@ -8,6 +8,7 @@ import org.apache.commons.lang3.builder.ToStringExclude;
 import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Data
 @Entity
@@ -29,6 +30,8 @@ public class OrganisationEntity {
     private boolean memberApprovalRequired;
 
     private boolean deleted;
+
+    private LocalDateTime created = LocalDateTime.now();
 
     @OneToOne
     @JoinColumn(name = "creator_id")

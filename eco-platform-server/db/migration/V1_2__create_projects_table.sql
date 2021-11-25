@@ -8,7 +8,8 @@ create table if not exists eco_projects
     published                   boolean      not null default false,
     closed                      boolean      not null default false,
     creator_id                  bigint       not null,
-    organisation_id             bigint       not null
+    organisation_id             bigint       not null,
+    created                     timestamp    not null default now()
     );
 
 alter table eco_projects

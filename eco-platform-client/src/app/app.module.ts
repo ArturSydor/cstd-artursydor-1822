@@ -14,14 +14,18 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {NgxWebstorageModule} from "ngx-webstorage";
 import {HttpClientInterceptor} from "./http-client-interceptor";
-import { DialogComponent } from './components/dialog/dialog.component';
+import {DialogComponent} from './components/dialog/dialog.component';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatProgressBarModule} from "@angular/material/progress-bar";
 import {MatButtonModule} from "@angular/material/button";
 import {MatDialogModule} from "@angular/material/dialog";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
-import { JoinRequestsComponent } from './user/join-requests/join-requests.component';
+import {JoinRequestsComponent} from './user/join-requests/join-requests.component';
+import {EcoProjectComponent} from './eco-project/eco-project.component';
+import {MatCardModule} from "@angular/material/card";
+import {FlexLayoutModule} from "@angular/flex-layout";
+import {EditorModule} from "@tinymce/tinymce-angular";
 
 @NgModule({
   declarations: [
@@ -33,7 +37,8 @@ import { JoinRequestsComponent } from './user/join-requests/join-requests.compon
     RegisterSuccessComponent,
     HomeComponent,
     DialogComponent,
-    JoinRequestsComponent
+    JoinRequestsComponent,
+    EcoProjectComponent
   ],
   imports: [
     BrowserModule,
@@ -48,6 +53,9 @@ import { JoinRequestsComponent } from './user/join-requests/join-requests.compon
     MatButtonModule,
     MatProgressBarModule,
     MatProgressSpinnerModule,
+    MatCardModule,
+    FlexLayoutModule,
+    EditorModule,
     NgxWebstorageModule.forRoot()
   ],
   providers: [{provide: HTTP_INTERCEPTORS, useClass: HttpClientInterceptor, multi: true}],

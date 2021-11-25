@@ -35,6 +35,9 @@ public class ProjectPointsService implements IProjectPointsService {
         userProjectPointsRepository.findById(new UserProjectPointsId(currentUser.getUserId(), projectId))
                 .ifPresentOrElse(pointsEntity -> updatePointsEntity(pointsEntity, projectEntity.getMaxAllowedPointsPerUser(), points),
                         () -> saveNewPointsEntity(projectId, points));
+
+        projectEntity.setPoints(projectEntity.getPoints() + points);
+        ecoProjectService.save(projectEntity);
     }
 
     private void saveNewPointsEntity(Long projectId, int points) {

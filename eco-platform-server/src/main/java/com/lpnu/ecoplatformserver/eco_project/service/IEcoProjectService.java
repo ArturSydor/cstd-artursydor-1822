@@ -7,13 +7,15 @@ import java.util.List;
 
 public interface IEcoProjectService {
 
-    List<EcoProjectDto> getAll();
+    List<EcoProjectDto> getAll(boolean personalOnly);
 
     EcoProjectEntity findOne(Long id);
 
     EcoProjectDto getOne(Long id);
 
     void create(EcoProjectDto projectDto);
+
+    EcoProjectEntity save(EcoProjectEntity entity);
 
     EcoProjectDto update(EcoProjectDto projectDto);
 

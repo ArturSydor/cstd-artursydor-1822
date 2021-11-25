@@ -19,8 +19,8 @@ public class EcoProjectController {
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    public List<EcoProjectDto> getAll() {
-        return ecoProjectService.getAll();
+    public List<EcoProjectDto> getAll(@RequestParam boolean personalOnly) {
+        return ecoProjectService.getAll(personalOnly);
     }
 
     @GetMapping("/{id}")
