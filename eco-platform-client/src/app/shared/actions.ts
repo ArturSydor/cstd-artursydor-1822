@@ -1,4 +1,8 @@
 export enum Actions {
   SAVE = "SAVE",
-  PUBLISH = "PUBLISH"
+  PUBLISH = "PUBLISH",
+  DELETE = "DELETE",
+  CLOSE = "CLOSE",
+  SUPPORT = "SUPPORT",
+  CANCEL = "CANCEL"
 }

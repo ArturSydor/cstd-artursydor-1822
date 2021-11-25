@@ -6,6 +6,9 @@ import {Router} from "@angular/router";
 import {DialogHelperService} from "../shared/dialog-helper.service";
 import {EcoProjectPayload} from "../model/eco-project-payload";
 import {EcoProjectTransferService} from "./eco-project-transfer.service";
+import {DialogInterface} from "../interfaces/dialog.interface";
+import {DialogComponent} from "../components/dialog/dialog.component";
+import {MatDialog} from "@angular/material/dialog";
 
 @Component({
   selector: 'app-eco-project',
@@ -18,7 +21,7 @@ export class EcoProjectComponent implements OnInit {
   ecoProjectPayload: EcoProjectPayload;
 
   constructor(private projectService: EcoProjectService, private router: Router, private dialogHelper: DialogHelperService,
-              private projectDataTransferService: EcoProjectTransferService) {
+              private projectDataTransferService: EcoProjectTransferService, private dialog: MatDialog) {
     this.ecoProjectForm = new FormGroup({
       projectName: new FormControl('', Validators.required),
       maxPointsPerUser: new FormControl(1, [Validators.required, Validators.min(1)]),
@@ -33,7 +36,7 @@ export class EcoProjectComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    if(this.projectDataTransferService.getData()) {
+    if (this.projectDataTransferService.getData()) {
       this.ecoProjectPayload = this.projectDataTransferService.getData();
       this.ecoProjectForm = new FormGroup({
         projectName: new FormControl(this.ecoProjectPayload.name, Validators.required),
@@ -45,14 +48,44 @@ export class EcoProjectComponent implements OnInit {
   }
 
   onSubmit(buttonType: string) {
-    if (Actions.PUBLISH === buttonType) {
-      this.ecoProjectPayload.published = true;
+    if (Actions.CANCEL === buttonType) {
+      this.askForConfirmation(Actions.CANCEL, () => this.performCancel());
+      return;
     }
 
     this.ecoProjectPayload.name = this.ecoProjectForm.get('projectName').value;
     this.ecoProjectPayload.maxAllowedPointsPerUser = this.ecoProjectForm.get('maxPointsPerUser').value;
     this.ecoProjectPayload.description = this.ecoProjectForm.get('projectDescription').value;
 
+    if (Actions.PUBLISH === buttonType) {
+      this.ecoProjectPayload.published = true;
+      this.askForConfirmation(Actions.PUBLISH, () => this.performSaving())
+    } else {
+      this.askForConfirmation(Actions.SAVE, () => this.performSaving())
+    }
+  }
+
+  askForConfirmation(action: Actions, func: () => void) {
+    const dialogInterface: DialogInterface = {
+      dialogHeader: 'Info',
+      dialogContent: 'Do you want to ' + action + ' this project?',
+      cancelButtonLabel: 'Cancel',
+      confirmButtonLabel: 'Submit',
+      callbackMethod: () => {
+        func();
+      }
+    };
+    this.dialog.open(DialogComponent, {
+      width: '500px',
+      data: dialogInterface,
+    });
+  }
+
+  performCancel() {
+    this.router.navigateByUrl('/home');
+  }
+
+  performSaving() {
     this.projectService.saveNewProject(this.ecoProjectPayload).subscribe(data => {
       console.log('Project successfully saved');
       this.router.navigateByUrl('/home');

@@ -28,8 +28,11 @@
     <button class="btn btn-lg btn-success btn-block save-project" type="submit" (click)="onSubmit('SAVE')"
             [disabled]="!ecoProjectForm.valid">SAVE
     </button>
-    <button class="btn btn-lg btn-success btn-block" type="submit" (click)="onSubmit('PUBLISH')"
+    <button class="btn btn-lg btn-success btn-block save-project" type="submit" (click)="onSubmit('PUBLISH')"
             [disabled]="!ecoProjectForm.valid">PUBLISH
+    </button>
+    <button class="btn btn-lg btn-secondary btn-block" type="submit" (click)="onSubmit('CANCEL')"
+            >CANCEL
     </button>
   </form>
   <br/>
