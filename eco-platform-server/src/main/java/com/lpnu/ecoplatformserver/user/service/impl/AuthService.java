@@ -22,6 +22,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.validation.ValidationException;
 import java.util.Objects;
 import java.util.Optional;
 
@@ -42,6 +43,7 @@ public class AuthService implements IAuthService {
     @Override
     public Long register(UserDto registrationDto) {
         Objects.requireNonNull(registrationDto);
+        checkPasswordFormat(registrationDto.password());
         checkIfUserNotExist(registrationDto.email());
         UserEntity userEntity = userMapper.mapToEntity(registrationDto);
         userEntity.setPassword(encryptPassword(userEntity.getPassword()));
@@ -55,6 +57,7 @@ public class AuthService implements IAuthService {
     public UserEntity registerFirstOrganisationUser(UserDto userDto, OrganisationEntity organisationEntity) {
         Objects.requireNonNull(userDto);
         Objects.requireNonNull(organisationEntity);
+        checkPasswordFormat(userDto.password());
         checkIfUserNotExist(userDto.email());
         UserEntity user = userMapper.mapToEntity(userDto);
         user.setOrganisation(organisationEntity);
@@ -91,6 +94,12 @@ public class AuthService implements IAuthService {
     private void checkIfUserNotExist(String email) {
         if (userRepository.findByEmail(email).isPresent()) {
             throw new DuplicatedEmailException("Email [%s] already exists", email);
+        }
+    }
+
+    private void checkPasswordFormat(String password) {
+        if (Objects.isNull(password) || password.isBlank()) {
+            throw new ValidationException("Incorrect password format");
         }
     }
 }
