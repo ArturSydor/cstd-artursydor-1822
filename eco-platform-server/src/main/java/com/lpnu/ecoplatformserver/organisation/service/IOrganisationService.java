@@ -14,7 +14,7 @@ public interface IOrganisationService {
 
     Set<OrganisationSimpleDto> getAll();
 
-    void create(OrganisationDto newOrganisation);
+    OrganisationDto create(OrganisationDto newOrganisation);
 
     OrganisationDto update(OrganisationDto organisation);
 

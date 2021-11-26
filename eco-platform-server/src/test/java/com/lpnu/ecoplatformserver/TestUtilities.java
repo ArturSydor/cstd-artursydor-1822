@@ -5,6 +5,7 @@ import com.lpnu.ecoplatformserver.user.dto.UserLoginDto;
 import lombok.experimental.UtilityClass;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
@@ -19,6 +20,10 @@ public class TestUtilities {
 
     public <T> ResponseEntity<T> getParametrizedResponse(TestRestTemplate restTemplate, String url, ParameterizedTypeReference<T> type) {
         return restTemplate.exchange(url, HttpMethod.GET, null, type);
+    }
+
+    public <T> ResponseEntity<T> getParametrizedResponseSecured(TestRestTemplate restTemplate, HttpHeaders headers, String url, ParameterizedTypeReference<T> type) {
+        return restTemplate.exchange(url, HttpMethod.GET, new HttpEntity<>(headers), type);
     }
 
     public AuthenticationResponseDto login(TestRestTemplate restTemplate, int port, UserLoginDto loginDto) {

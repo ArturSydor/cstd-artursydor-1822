@@ -41,7 +41,7 @@ public class AuthService implements IAuthService {
     private final IUserMapper userMapper;
 
     @Override
-    public Long register(UserDto registrationDto) {
+    public UserDto register(UserDto registrationDto) {
         Objects.requireNonNull(registrationDto);
         checkPasswordFormat(registrationDto.password());
         checkIfUserNotExist(registrationDto.email());
@@ -50,7 +50,7 @@ public class AuthService implements IAuthService {
         if (userEntity.getOrganisation().isMemberApprovalRequired()) {
             userEntity.setActive(Boolean.FALSE);
         }
-        return userRepository.save(userEntity).getId();
+        return userMapper.mapToDto(userRepository.save(userEntity));
     }
 
     @Override
