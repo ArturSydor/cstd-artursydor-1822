@@ -6,6 +6,7 @@ import com.lpnu.ecoplatformserver.user.dto.UserLoginDto;
 import com.lpnu.ecoplatformserver.user.service.IAuthService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -23,8 +24,8 @@ public class AuthController {
     }
 
     @PostMapping("/registration")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void register(@RequestBody @Valid UserDto registrationRequest) {
-        authService.register(registrationRequest);
+    @ResponseStatus(HttpStatus.OK)
+    public ResponseEntity<UserDto> register(@RequestBody @Valid UserDto registrationRequest) {
+        return ResponseEntity.ok(authService.register(registrationRequest));
     }
 }
