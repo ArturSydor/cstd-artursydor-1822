@@ -18,6 +18,7 @@ import java.util.Objects;
 
 import static com.lpnu.ecoplatformserver.data.CommonTestConstants.*;
 import static com.lpnu.ecoplatformserver.data.RolesData.INHABITANT;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
 @Slf4j
@@ -49,7 +50,10 @@ class UserControllerTest extends AbstractTest {
             assertFalse(response.getBody().isEmpty());
             var actualUser = response.getBody().stream().filter(u -> Objects.equals(u.id(), registeredUserId)).findFirst();
             assertTrue(actualUser.isPresent());
-            assertEquals(UserApprovalsData.getRegisteredUsualUserDto(registeredUserId, organisationId), actualUser.get());
+            assertThat(actualUser.get())
+                    .usingRecursiveComparison()
+                    .ignoringFields("joined", "organisation.created")
+                    .isEqualTo(UserApprovalsData.getRegisteredUsualUserDto(registeredUserId, organisationId));
         });
     }
 

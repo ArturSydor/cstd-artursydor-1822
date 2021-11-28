@@ -19,6 +19,7 @@ import java.util.Set;
 
 import static com.lpnu.ecoplatformserver.data.CommonTestConstants.ORGANISATION_URL;
 import static com.lpnu.ecoplatformserver.organisation.controller.OrganisationData.*;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
 @Slf4j
@@ -64,7 +65,10 @@ class OrganisationControllerTest extends AbstractTest {
         assertFalse(response.getBody().isEmpty());
         var actualOrganisation = response.getBody().stream().filter(o -> Objects.equals(o.id(), organisationId)).findFirst()
                 .orElseThrow(() -> new EntityNotFoundException("Something went wrong. No organisation found with id=" + organisationId));
-        assertEquals(getExpectedOrganisationDtoAfterCreation(organisationId), actualOrganisation);
+        assertThat(actualOrganisation)
+                .usingRecursiveComparison()
+                .ignoringFields("created", "creator.joined")
+                .isEqualTo(getExpectedOrganisationDtoAfterCreation(organisationId));
     }
 
     @Test
@@ -90,7 +94,10 @@ class OrganisationControllerTest extends AbstractTest {
             log.info(response.getBody().toString());
 
             assertEquals(HttpStatus.OK, response.getStatusCode());
-            assertEquals(getUpdateOrganisationDto(organisationId, creatorId), response.getBody());
+            assertThat(response.getBody())
+                    .usingRecursiveComparison()
+                    .ignoringFields("created", "creator.joined", "creator.organisation.created")
+                    .isEqualTo(getUpdateOrganisationDto(organisationId, creatorId));
         });
     }
 
@@ -104,7 +111,10 @@ class OrganisationControllerTest extends AbstractTest {
         log.info(response.getBody().toString());
 
         assertEquals(HttpStatus.OK, response.getStatusCode());
-        assertEquals(getUpdateOrganisationDto(organisationId, creatorId), response.getBody());
+        assertThat(response.getBody())
+                .usingRecursiveComparison()
+                .ignoringFields("created", "creator.joined", "creator.organisation.created")
+                .isEqualTo(getUpdateOrganisationDto(organisationId, creatorId));
     }
 
     @Test

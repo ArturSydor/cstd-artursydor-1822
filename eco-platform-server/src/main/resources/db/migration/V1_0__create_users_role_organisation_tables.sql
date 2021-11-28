@@ -14,7 +14,8 @@ create table if not exists users
     active          boolean      not null default true,
     deleted         boolean      not null default false,
     organisation_id bigint       not null,
-    role_id         integer      not null
+    role_id         integer      not null,
+    joined          timestamp    not null default now()
     );
 
 create table if not exists organisation
@@ -24,7 +25,8 @@ create table if not exists organisation
     email                       varchar(255) unique,
     member_approval_required    boolean not null default true,
     deleted                     boolean not null default false,
-    creator_id                  bigint
+    creator_id                  bigint,
+    created                     timestamp    not null default now()
     );
 
 alter table users

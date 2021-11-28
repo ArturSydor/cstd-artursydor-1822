@@ -26,7 +26,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         UserEntity user = userRepository.findByEmail(email)
                 .orElseThrow(() -> new UsernameNotFoundException(String.format("User with email=[%s] not found", email)));
         checkIfUserIsActive(user);
-        return new OrganisationUser(user.getOrganisation().getId(), user.getEmail(),
+        return new OrganisationUser(user.getId(), user.getOrganisation().getId(), user.getEmail(),
                 user.getPassword(), true, true, true,
                 true, getAuthorities(user.getRole().getName()));
     }

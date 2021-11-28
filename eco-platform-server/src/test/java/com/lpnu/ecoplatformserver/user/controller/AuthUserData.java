@@ -21,6 +21,7 @@ final class AuthUserData {
             Boolean.TRUE,
             Boolean.FALSE,
             null,
+            null,
             MANAGER
     );
 
@@ -30,6 +31,7 @@ final class AuthUserData {
             AUTH_TESTS_STEP + ORGANISATION_EMAIL,
             Boolean.FALSE,
             Boolean.FALSE,
+            null,
             NEW_MANAGER_USER_DTO
     );
 
@@ -38,7 +40,8 @@ final class AuthUserData {
                 organisationId,
                 AUTH_TESTS_STEP + ORGANISATION_NAME,
                 Boolean.FALSE,
-                Boolean.FALSE
+                Boolean.FALSE,
+                null
         );
     }
 
@@ -51,6 +54,7 @@ final class AuthUserData {
                 INHABITANT_USER_PASSWORD,
                 Boolean.TRUE,
                 Boolean.FALSE,
+                null,
                 getOrganisationDtoAfterCreation(organisationId),
                 INHABITANT
         );

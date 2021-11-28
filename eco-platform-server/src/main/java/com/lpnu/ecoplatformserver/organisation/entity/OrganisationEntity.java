@@ -2,14 +2,20 @@ package com.lpnu.ecoplatformserver.organisation.entity;
 
 import com.lpnu.ecoplatformserver.user.entity.UserEntity;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
+import org.apache.commons.lang3.builder.ToStringExclude;
 import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Data
 @Entity
 @Table(name = "organisation")
 @Where(clause = "deleted = false")
+@EqualsAndHashCode(exclude = {"creator"})
+@ToString(exclude = {"creator"})
 public class OrganisationEntity {
 
     @Id
@@ -24,6 +30,8 @@ public class OrganisationEntity {
     private boolean memberApprovalRequired;
 
     private boolean deleted;
+
+    private LocalDateTime created = LocalDateTime.now();
 
     @OneToOne
     @JoinColumn(name = "creator_id")

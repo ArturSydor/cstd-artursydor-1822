@@ -7,15 +7,17 @@ import {RegisterSuccessComponent} from "./auth/register-success/register-success
 import {HomeComponent} from "./home/home.component";
 import {AuthGuard} from "./auth.guard";
 import {JoinRequestsComponent} from "./user/join-requests/join-requests.component";
+import {EcoProjectComponent} from "./eco-project/eco-project.component";
 
 const routes: Routes = [
-  { path: '', redirectTo: '/login', pathMatch: 'full' },
+  { path: '', redirectTo: '/home', pathMatch: 'full' },
   {path: 'register-organisation', component: RegisterOrganisationComponent},
   {path: 'register-user', component: RegisterUserComponent},
   {path: 'register-success', component: RegisterSuccessComponent},
   {path: 'login', component: LoginComponent},
   {path: 'home', component: HomeComponent, canActivate: [AuthGuard]},
-  {path: 'organisation-join-requests', component: JoinRequestsComponent, canActivate: [AuthGuard]}
+  {path: 'organisation-join-requests', component: JoinRequestsComponent, canActivate: [AuthGuard]},
+  {path: 'eco-project', component: EcoProjectComponent, canActivate: [AuthGuard]}
 ];
 
 @NgModule({

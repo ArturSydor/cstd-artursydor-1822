@@ -24,6 +24,7 @@ final class OrganisationData {
             Boolean.TRUE,
             Boolean.FALSE,
             null,
+            null,
             MANAGER
     );
 
@@ -33,6 +34,7 @@ final class OrganisationData {
             ORGANISATION_TESTS_STEP + ORGANISATION_EMAIL,
             Boolean.TRUE,
             Boolean.FALSE,
+            null,
             NEW_USER_DTO
     );
 
@@ -41,7 +43,8 @@ final class OrganisationData {
                 organisationId,
                 ORGANISATION_TESTS_STEP + ORGANISATION_NAME,
                 Boolean.TRUE,
-                Boolean.FALSE
+                Boolean.FALSE,
+                null
         );
     }
 
@@ -50,7 +53,8 @@ final class OrganisationData {
                 organisationId,
                 ORGANISATION_TESTS_STEP + ORGANISATION_NAME_FOR_UPDATE,
                 Boolean.TRUE,
-                Boolean.FALSE
+                Boolean.FALSE,
+                null
         );
     }
 
@@ -63,6 +67,7 @@ final class OrganisationData {
                 null,
                 Boolean.TRUE,
                 Boolean.FALSE,
+                null,
                 getExpectedOrganisationDtoAfterUpdate(organisationId),
                 MANAGER
         );
@@ -75,6 +80,7 @@ final class OrganisationData {
                 ORGANISATION_TESTS_STEP + ORGANISATION_EMAIL_FOR_UPDATE,
                 Boolean.TRUE,
                 Boolean.FALSE,
+                null,
                 getCreatedUserDto(userId, organisationId)
         );
     }

@@ -4,6 +4,7 @@ import com.lpnu.ecoplatformserver.organisation.entity.OrganisationEntity;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Data
 @Entity
@@ -29,6 +30,8 @@ public class UserEntity {
     private boolean active = Boolean.TRUE;
 
     private boolean deleted;
+
+    private LocalDateTime joined = LocalDateTime.now();
 
     @ManyToOne
     @JoinColumn(name = "organisation_id")

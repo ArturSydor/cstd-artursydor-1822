@@ -10,6 +10,7 @@ import org.mapstruct.Mapping;
 @Mapper(componentModel = "spring", uses = IUserMapper.class)
 public interface IOrganisationMapper {
 
+    @Mapping(target = "created", ignore = true)
     OrganisationEntity mapToEntity(OrganisationDto dto);
 
     OrganisationDto mapToDto(OrganisationEntity entity);

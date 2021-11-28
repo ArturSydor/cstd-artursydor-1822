@@ -1,0 +1,39 @@
+<div class="container justify-content-center">
+  <form class="form-auth" [formGroup]="ecoProjectForm">
+    <h1 class="h3 mb-3 font-weight-normal">Project data</h1>
+    <div class="form-floating rg-input">
+      <input type="text" id="inputProjectName" [formControlName]="'projectName'" class="form-control"
+             placeholder="Name">
+      <label for="inputProjectName" class="sr-only">Name</label>
+      <span
+        *ngIf="!ecoProjectForm.get('projectName').valid && ecoProjectForm.get('projectName').touched"
+        class="input-error">Project name is required</span>
+    </div>
+    <div class="form-floating rg-input">
+      <input type="text" id="inputMaxPointsPerUser" [formControlName]="'maxPointsPerUser'" class="form-control"
+             placeholder="Max points per user">
+      <label for="inputMaxPointsPerUser" class="sr-only">Max points per user</label>
+      <span
+        *ngIf="!ecoProjectForm.get('maxPointsPerUser').valid && ecoProjectForm.get('maxPointsPerUser').touched"
+        class="input-error">Max points per user is required</span>
+    </div>
+    <div class="form-group rg-input">
+      <label class="form-label project-description" for="projectDescription">Description</label>
+
+      <editor [formControlName]="'projectDescription'" id="projectDescription" [init]="{plugins: 'link'}"></editor>
+      <span
+        *ngIf="!ecoProjectForm.get('projectDescription').valid && ecoProjectForm.get('projectDescription').touched"
+        class="input-error">Project description  is required</span>
+    </div>
+    <button class="btn btn-lg btn-success btn-block save-project" type="submit" (click)="onSubmit('SAVE')"
+            [disabled]="!ecoProjectForm.valid">SAVE
+    </button>
+    <button class="btn btn-lg btn-success btn-block save-project" type="submit" (click)="onSubmit('PUBLISH')"
+            [disabled]="!ecoProjectForm.valid">PUBLISH
+    </button>
+    <button class="btn btn-lg btn-secondary btn-block" type="submit" (click)="onSubmit('CANCEL')"
+            >CANCEL
+    </button>
+  </form>
+  <br/>
+</div>

@@ -11,6 +11,7 @@ public interface IUserMapper {
     @Mapping(target = "password", ignore = true)
     UserDto mapToDto(UserEntity entity);
 
+    @Mapping(target = "joined", ignore = true)
     UserEntity mapToEntity(UserDto dto);
 
 }
