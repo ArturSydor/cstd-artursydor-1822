@@ -12,7 +12,7 @@ public record UserDto(
         @NotEmpty String firstName,
         @NotEmpty String lastName,
         @NotEmpty @Email String email,
-        @NotEmpty String password,
+        String password,
         boolean active,
         boolean deleted,
         LocalDateTime joined,

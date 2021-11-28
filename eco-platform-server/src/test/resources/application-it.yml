@@ -1,0 +1,7 @@
+spring:
+  datasource:
+    url: "jdbc:tc:postgresql:9.6.8:///ecoplatform"
+    username: "user"
+    password: "password"
+  flyway:
+    enabled: true
