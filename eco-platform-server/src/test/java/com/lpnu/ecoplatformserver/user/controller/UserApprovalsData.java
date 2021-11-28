@@ -30,6 +30,7 @@ final class UserApprovalsData {
             Boolean.TRUE,
             Boolean.FALSE,
             null,
+            null,
             MANAGER
     );
 
@@ -39,6 +40,7 @@ final class UserApprovalsData {
             USER_TESTS_STEP + ORGANISATION_EMAIL,
             Boolean.TRUE,
             Boolean.FALSE,
+            null,
             NEW_MANAGER_USER_DTO
     );
 
@@ -47,7 +49,8 @@ final class UserApprovalsData {
                 organisationId,
                 USER_TESTS_STEP + ORGANISATION_NAME,
                 Boolean.TRUE,
-                Boolean.FALSE
+                Boolean.FALSE,
+                null
         );
     }
 
@@ -60,6 +63,7 @@ final class UserApprovalsData {
                 INHABITANT_USER_PASSWORD,
                 Boolean.TRUE,
                 Boolean.FALSE,
+                null,
                 getOrganisationDtoAfterCreation(organisationId),
                 INHABITANT
         );
@@ -74,6 +78,7 @@ final class UserApprovalsData {
                 null,
                 Boolean.FALSE,
                 Boolean.FALSE,
+                null,
                 getOrganisationDtoAfterCreation(organisationId),
                 INHABITANT
         );
