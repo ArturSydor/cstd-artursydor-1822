@@ -7,11 +7,9 @@ import com.lpnu.ecoplatformserver.user.dto.UserDto;
 import com.lpnu.ecoplatformserver.user.dto.UserLoginDto;
 import com.lpnu.ecoplatformserver.user.entity.UserEntity;
 
-import java.util.Optional;
-
 public interface IAuthService {
 
-    Long register(UserDto registrationDto);
+    UserDto register(UserDto registrationDto);
 
     UserEntity registerFirstOrganisationUser(UserDto userDto, OrganisationEntity organisationEntity);
 

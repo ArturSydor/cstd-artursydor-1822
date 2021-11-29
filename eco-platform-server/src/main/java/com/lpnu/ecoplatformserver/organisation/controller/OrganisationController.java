@@ -29,9 +29,9 @@ public class OrganisationController {
     }
 
     @PostMapping
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void create(@RequestBody @Valid OrganisationDto organisationDto) {
-        organisationService.create(organisationDto);
+    @ResponseStatus(HttpStatus.OK)
+    public ResponseEntity<OrganisationDto> create(@RequestBody @Valid OrganisationDto organisationDto) {
+        return ResponseEntity.ok(organisationService.create(organisationDto));
     }
 
     @PutMapping
