@@ -21,4 +21,12 @@ export class UserService {
     return this.httpClient.post(this.url + '/approvals/' + userId, null);
   }
 
+  updateUser(userForUpdate: UserPayload): Observable<any> {
+    return this.httpClient.put(this.url, userForUpdate);
+  }
+
+  getOneByEmail(email: String): Observable<UserPayload> {
+    return this.httpClient.get<UserPayload>(this.url + '?email=' + email);
+  }
+
 }

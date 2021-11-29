@@ -8,6 +8,7 @@ import {LoginPayload} from "./login-payload";
 import {JwtAuthResponse} from "./jwt-auth-response";
 import {map} from "rxjs/operators";
 import {Roles} from "./roles";
+import {ChangePasswordPayload} from "./change-password-payload";
 
 
 @Injectable({
@@ -58,6 +59,10 @@ export class AuthService {
 
   registerUser(registerPayload: UserRegistrationPayload): Observable<any> {
     return this.httpClient.post(this.url + 'auth/registration', registerPayload)
+  }
+
+  changePassword(changePasswordPayload: ChangePasswordPayload): Observable<any> {
+    return this.httpClient.post(this.url + 'auth/password', changePasswordPayload);
   }
 
 }

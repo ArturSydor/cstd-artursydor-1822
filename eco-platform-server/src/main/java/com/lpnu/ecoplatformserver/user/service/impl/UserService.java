@@ -49,6 +49,11 @@ public class UserService implements IUserService {
     }
 
     @Override
+    public UserDto getOneByEmail(String email) {
+        return userMapper.mapToDto(findOneByEmail(email));
+    }
+
+    @Override
     public void updateUser(UserDto user) {
         Objects.requireNonNull(user);
 

@@ -1,0 +1,39 @@
+<div class="container justify-content-center">
+  <form class="form-auth" [formGroup]="profileForm">
+    <h1 class="h3 mb-3 font-weight-normal">Profile info</h1>
+    <div class="form-floating rg-input">
+      <input type="text" id="inputUserFirstName" [formControlName]="'userFirstName'" class="form-control"
+             placeholder="First name">
+      <label for="inputUserFirstName" class="sr-only">First name</label>
+      <span
+        *ngIf="!profileForm.get('userFirstName').valid && profileForm.get('userFirstName').touched"
+        class="input-error">First name is required</span>
+    </div>
+    <div class="form-floating rg-input">
+      <input type="text" id="inputUserLastName" [formControlName]="'userLastName'" class="form-control"
+             placeholder="Last name">
+      <label for="inputUserLastName" class="sr-only">Last name</label>
+      <span
+        *ngIf="!profileForm.get('userLastName').valid && profileForm.get('userLastName').touched" class="input-error">Last name  is required</span>
+    </div>
+    <div class="form-floating rg-input">
+      <input type="email" id="inputUserEmail" [formControlName]="'userEmail'" class="form-control" placeholder="Email">
+      <label for="inputUserEmail" class="sr-only">Email</label>
+      <span
+        *ngIf="!profileForm.get('userEmail').valid && profileForm.get('userEmail').touched" class="input-error">Please provide a valid email</span>
+    </div>
+    <div class="form-group rg-input active-user-group">
+      <label for="inputActiveUser" class="sr-only">Active</label>
+      <input type="checkbox" id="inputActiveUser" [formControlName]="'activeUser'" class="form-check-input active-user">
+    </div>
+    <div class="form-floating rg-input">
+      <input readonly type="text" id="inputJoined" [formControlName]="'joined'" class="form-control" placeholder="Join date">
+      <label for="inputJoined" class="sr-only">Join date</label>
+    </div>
+    <button class="btn btn-lg btn-success btn-block save-bth" type="submit" (click)="onSubmit('SAVE')"
+            [disabled]="!profileForm.valid">SAVE
+    </button>
+    <button class="btn btn-lg btn-secondary btn-block" type="submit" (click)="onSubmit('CANCEL')">CANCEL</button>
+  </form>
+  <br/>
+</div>

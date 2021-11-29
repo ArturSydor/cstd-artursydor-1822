@@ -6,6 +6,8 @@ export class UserPayload {
   firstName: String;
   lastName: String;
   email: String;
+  active: Boolean;
+  joined: String;
   role: RolePayload;
   organisation: SimpleOrganisationPayload
 }

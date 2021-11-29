@@ -1,6 +1,7 @@
 package com.lpnu.ecoplatformserver.user.controller;
 
 import com.lpnu.ecoplatformserver.user.dto.AuthenticationResponseDto;
+import com.lpnu.ecoplatformserver.user.dto.ChangePasswordRequestDto;
 import com.lpnu.ecoplatformserver.user.dto.UserDto;
 import com.lpnu.ecoplatformserver.user.dto.UserLoginDto;
 import com.lpnu.ecoplatformserver.user.service.IAuthService;
@@ -28,4 +29,12 @@ public class AuthController {
     public ResponseEntity<UserDto> register(@RequestBody @Valid UserDto registrationRequest) {
         return ResponseEntity.ok(authService.register(registrationRequest));
     }
+
+    @PostMapping("/password")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void changePassword(@RequestBody @Valid ChangePasswordRequestDto changePasswordRequestDto) {
+        authService.changePassword(changePasswordRequestDto);
+    }
+
+
 }
