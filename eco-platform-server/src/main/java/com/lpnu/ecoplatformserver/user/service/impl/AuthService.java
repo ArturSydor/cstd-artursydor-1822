@@ -84,11 +84,10 @@ public class AuthService implements IAuthService {
     public void changePassword(ChangePasswordRequestDto changePasswordRequestDto) {
         if (Objects.equals(currentUser.getUsername(), changePasswordRequestDto.email())) {
             var user = userService.findOneByEmail(changePasswordRequestDto.email());
-            var newPassword = encryptPassword(changePasswordRequestDto.newPassword());
-            if (newPassword.equals(user.getPassword())) {
+            if (passwordEncoder.matches(changePasswordRequestDto.newPassword(), user.getPassword())) {
                 throw new DuplicatedEntryException("Your new password is the same as old one, please enter another");
             }
-            user.setPassword(newPassword);
+            user.setPassword(encryptPassword(changePasswordRequestDto.newPassword()));
             userRepository.save(user);
         } else {
             throw new ObjectAccessDeniedException("Password update is not allowed!");
