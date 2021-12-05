@@ -32,3 +32,55 @@ http://localhost:8080/swagger-ui/index.html?configUrl=/v3/api-docs/swagger-confi
 ``` 
 mvn flyway:migrate -Dflyway.configFiles=flyway.conf
 ```
+
+# Tags:
+#### 1. cstd-artursydor-1822_1.0.0_4821487
+- integration of database migration tool
+- organisation and user creation pages
+- user login page
+- eco projects management pages
+- user profile page
+    
+# Running guide
+1) Run flyway in order to have the newest db schema
+```
+mvn flyway:migrate -Dflyway.configFiles=flyway.conf
+```
+2) Build and run server
+```
+mvn clean package -DskipTests 
+
+If you want also to execute tests you can:
+remove flag -DskipTests
+or
+run mvn test
+
+mvn spring-boot:run
+```
+3) Build and run client
+```
+npm install
+ng serve
+```
+
+# User guide
+#####1) Register new organisation
+- click on button "Register organisation" and fill in all required fields
+#####2) Join existing organisation
+- click on button "Create account", fill in all required fields and choose organisation
+- if for your organisation approval is required, then wait until manager will approve your account,
+otherwise you can directly log into the system
+#####3) Eco projects
+**Available operations**
+- create new project, it will be visible only for its owners
+- published project becomes visible for other organisation members
+- for closed projects voting is not allowed anymore
+- edit or delete is allowed only for not published projects and can be done only by owners
+- in home page you can choose checkbox "Show only my projects" to view only your own projects
+#####4) User profile
+- click on button "Profile"
+- Update information: allows user to view detailed info or update his information
+- Change password: allows user to update its password
+#####5) Join requests - ONLY FOR ORGANISATION MANAGER
+- click button "Join requests"
+- you can view all pending requests and approve some of them
