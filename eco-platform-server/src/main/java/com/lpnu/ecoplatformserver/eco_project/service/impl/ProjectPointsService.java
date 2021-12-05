@@ -28,7 +28,6 @@ public class ProjectPointsService implements IProjectPointsService {
 
     private final OrganisationUser currentUser;
 
-
     @Override
     public void updatePoints(Long projectId, int points) {
         Objects.requireNonNull(projectId);
