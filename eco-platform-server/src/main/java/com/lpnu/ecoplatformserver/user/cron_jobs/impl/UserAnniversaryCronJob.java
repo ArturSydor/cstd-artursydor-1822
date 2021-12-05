@@ -16,10 +16,7 @@ import java.util.Calendar;
 
 /**
  * Every day @UserAnniversaryCronJob checks how long user presents in system
- * and base on this data assign additional points.
- * For example:
- * 1 year = 1 point
- * 2 years = 2 points
+ * and base on this data assign additional points each year.
  */
 @Slf4j
 @Component
@@ -46,7 +43,7 @@ public class UserAnniversaryCronJob implements ICronJob {
         userRepository.findAllByActiveIsTrue()
                 .stream()
                 .filter(user -> hasJoinedThisDay(user, todayDate))
-                .forEach(user -> userService.updatePoints(user, 0));
+                .forEach(user -> userService.updatePoints(user, 1));
 
         log.debug("UserAnniversaryCronJob finished after {} milliseconds", System.currentTimeMillis() - start);
     }
