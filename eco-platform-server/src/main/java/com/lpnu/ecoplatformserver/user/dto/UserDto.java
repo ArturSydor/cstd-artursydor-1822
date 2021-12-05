@@ -16,6 +16,7 @@ public record UserDto(
         String password,
         boolean active,
         boolean deleted,
+        int availablePoints,
         LocalDateTime joined,
         OrganisationSimpleDto organisation,
         @Valid RoleDto role

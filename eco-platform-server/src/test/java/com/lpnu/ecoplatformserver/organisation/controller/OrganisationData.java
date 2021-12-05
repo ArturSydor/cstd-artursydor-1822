@@ -23,6 +23,7 @@ final class OrganisationData {
             MANAGER_USER_PASSWORD,
             Boolean.TRUE,
             Boolean.FALSE,
+            0,
             null,
             null,
             MANAGER
@@ -67,6 +68,7 @@ final class OrganisationData {
                 null,
                 Boolean.TRUE,
                 Boolean.FALSE,
+                0,
                 null,
                 getExpectedOrganisationDtoAfterUpdate(organisationId),
                 MANAGER

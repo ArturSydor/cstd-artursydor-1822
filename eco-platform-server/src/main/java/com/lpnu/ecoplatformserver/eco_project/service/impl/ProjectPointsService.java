@@ -7,6 +7,7 @@ import com.lpnu.ecoplatformserver.eco_project.repository.UserProjectPointsReposi
 import com.lpnu.ecoplatformserver.eco_project.service.IEcoProjectService;
 import com.lpnu.ecoplatformserver.eco_project.service.IProjectPointsService;
 import com.lpnu.ecoplatformserver.security.OrganisationUser;
+import com.lpnu.ecoplatformserver.user.service.IUserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -21,10 +22,12 @@ import java.util.Objects;
 public class ProjectPointsService implements IProjectPointsService {
 
     private final IEcoProjectService ecoProjectService;
+    private final IUserService userService;
 
     private final UserProjectPointsRepository userProjectPointsRepository;
 
     private final OrganisationUser currentUser;
+
 
     @Override
     public void updatePoints(Long projectId, int points) {
@@ -41,6 +44,7 @@ public class ProjectPointsService implements IProjectPointsService {
     }
 
     private void saveNewPointsEntity(Long projectId, int points) {
+        checkIfUserHasEnoughPoints(points, Boolean.TRUE);
         userProjectPointsRepository.save(new UserProjectPointsEntity(currentUser.getUserId(), projectId, points));
     }
 
@@ -49,6 +53,7 @@ public class ProjectPointsService implements IProjectPointsService {
         if (newPointsValue > maxAllowedPointPerUser) {
             throw new IllegalStateException(String.format("It is not allowed to update more than %s points for one user for this project", maxAllowedPointPerUser));
         }
+        checkIfUserHasEnoughPoints(points, Boolean.FALSE);
         pointsEntity.setPoints(newPointsValue);
         userProjectPointsRepository.save(pointsEntity);
     }
@@ -62,6 +67,19 @@ public class ProjectPointsService implements IProjectPointsService {
         }
         if (entity.getMaxAllowedPointsPerUser() < points) {
             throw new IllegalStateException(String.format("It is not allowed to update more than %s points for one user for this project", entity.getMaxAllowedPointsPerUser()));
+        }
+    }
+
+    private int getCurrentUserPoints() {
+        return userService.findOne(currentUser.getUserId()).getAvailablePoints();
+    }
+
+    private void checkIfUserHasEnoughPoints(int points, boolean isFirstPoints) {
+        int availablePoints = getCurrentUserPoints();
+        if (((isFirstPoints && points > 1) && availablePoints < points - 1)
+                || (!isFirstPoints && availablePoints < points)) {
+            log.error("User {} has available only {} and it is not enough to support project with {} points", currentUser.getUsername(), availablePoints, points);
+            throw new IllegalStateException("User don't have enough points to support this project!");
         }
     }
 

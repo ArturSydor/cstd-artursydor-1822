@@ -19,4 +19,6 @@ public interface IUserService {
 
     void activateUser(Long id);
 
+    void updatePoints(UserEntity user, int points);
+
 }

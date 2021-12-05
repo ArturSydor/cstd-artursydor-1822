@@ -77,6 +77,12 @@ public class UserService implements IUserService {
         userRepository.save(user);
     }
 
+    @Override
+    public void updatePoints(UserEntity user, int points) {
+        user.setAvailablePoints(user.getAvailablePoints() + points);
+        userRepository.save(user);
+    }
+
     private void checkIfEmailDoesNotExist(UserDto dto, UserEntity entity) {
         if (!Objects.equals(dto.email(), entity.getEmail())) {
             userRepository.findByEmail(dto.email())
