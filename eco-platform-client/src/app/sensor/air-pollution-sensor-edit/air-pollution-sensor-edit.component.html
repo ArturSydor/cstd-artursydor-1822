@@ -1,0 +1,27 @@
+<div class="container justify-content-center">
+  <form class="form-auth" [formGroup]="sensorForm">
+    <h1 class="h3 mb-3 font-weight-normal">New air pollution sensor</h1>
+    <div class="form-floating rg-input">
+      <input type="text" id="inputSensorExternalIdentifier" [formControlName]="'externalIdentifier'" class="form-control" placeholder="External identifier">
+      <label for="inputSensorExternalIdentifier" class="sr-only">External identifier</label>
+      <span
+        *ngIf="!sensorForm.get('externalIdentifier').valid && sensorForm.get('externalIdentifier').touched" class="input-error">Please provide a valid external identifier</span>
+    </div>
+    <div class="form-floating rg-input">
+      <input type="text" id="inputLatitude" [formControlName]="'latitude'" class="form-control"
+             placeholder="Latitude" pattern="^(-?[1-8]?\d(?:\.\d{1,18})?|90(?:\.0{1,18})?)$">
+      <label for="inputLatitude" class="sr-only">Latitude</label>
+      <span
+        *ngIf="!sensorForm.get('latitude').valid && sensorForm.get('latitude').touched" class="input-error">Latitude is not valid</span>
+    </div>
+    <div class="form-floating rg-input">
+      <input type="text" id="inputLongitude" [formControlName]="'longitude'" class="form-control"
+             placeholder="Longitude" pattern="^(-?(?:1[0-7]|[1-9])?\d(?:\.\d{1,18})?|180(?:\.0{1,18})?)$">
+      <label for="inputLongitude" class="sr-only">Longitude</label>
+      <span
+        *ngIf="!sensorForm.get('longitude').valid && sensorForm.get('longitude').touched" class="input-error">Longitude is not valid</span>
+    </div>
+    <button class="btn btn-lg btn-success btn-block save-bth" (click)="onSubmit('SAVE')" type="submit" [disabled]="!sensorForm.valid">SAVE</button>
+    <button class="btn btn-lg btn-dark btn-block" (click)="onSubmit('CANCEL')" type="submit" [disabled]="!sensorForm.valid">CANCEL</button>
+  </form>
+</div>

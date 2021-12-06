@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {AuthService} from "../auth/auth.service";
 import {Router} from "@angular/router";
-import {DialogHelperService} from "../shared/dialog-helper.service";
 import {DialogInterface} from "../interfaces/dialog.interface";
 import {DialogComponent} from "../components/dialog/dialog.component";
 import {MatDialog} from "@angular/material/dialog";

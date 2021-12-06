@@ -6,10 +6,11 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping("/air-sensor")
+@RequestMapping("/air-pollution-sensor")
 @RequiredArgsConstructor
 public class AirPollutionSensorController {
 
@@ -29,13 +30,13 @@ public class AirPollutionSensorController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.OK)
-    public AirPollutionSensorDto create(@RequestBody AirPollutionSensorDto newSensor) {
+    public AirPollutionSensorDto create(@RequestBody @Valid AirPollutionSensorDto newSensor) {
         return airPollutionSensorService.create(newSensor);
     }
 
     @PutMapping
     @ResponseStatus(HttpStatus.OK)
-    public AirPollutionSensorDto update(AirPollutionSensorDto sensor) {
+    public AirPollutionSensorDto update(@RequestBody @Valid AirPollutionSensorDto sensor) {
         return airPollutionSensorService.update(sensor);
     }
 

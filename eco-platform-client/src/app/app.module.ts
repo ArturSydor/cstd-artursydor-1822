@@ -30,6 +30,8 @@ import { UserProfileComponent } from './user/user-profile/user-profile.component
 import {DatePipe} from "@angular/common";
 import {MatMenuModule} from "@angular/material/menu";
 import { ChangePasswordComponent } from './auth/change-password/change-password.component';
+import { AirPollutionSensorComponent } from './sensor/air-pollution-sensor/air-pollution-sensor.component';
+import { AirPollutionSensorEditComponent } from './sensor/air-pollution-sensor-edit/air-pollution-sensor-edit.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +46,9 @@ import { ChangePasswordComponent } from './auth/change-password/change-password.
     JoinRequestsComponent,
     EcoProjectComponent,
     UserProfileComponent,
-    ChangePasswordComponent
+    ChangePasswordComponent,
+    AirPollutionSensorComponent,
+    AirPollutionSensorEditComponent
   ],
   imports: [
     BrowserModule,
