@@ -40,7 +40,11 @@ mvn flyway:migrate -Dflyway.configFiles=flyway.conf
 - user login page
 - eco projects management pages
 - user profile page
-    
+#### 2. cstd-artursydor-1822_2.0.0_4921493
+- sensors management page
+- kafka integration for receiving sensors data
+- eco report page
+
 # Running guide
 1) Run flyway in order to have the newest db schema
 ```
@@ -84,3 +88,9 @@ otherwise you can directly log into the system
 #####5) Join requests - ONLY FOR ORGANISATION MANAGER
 - click button "Join requests"
 - you can view all pending requests and approve some of them
+#####6) Sensors
+**Available operations**
+- add
+- edit
+- delete
+- view report for the sensor with the worst air quality
