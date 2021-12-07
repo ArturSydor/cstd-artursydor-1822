@@ -9,8 +9,12 @@
         <a href="/organisation-join-requests" class="login btn btn-default" *ngIf="visibleForManagers()">Join
           requests</a>
         <a href="/eco-project" class="login btn btn-default">Create project</a>
-        <button mat-button [matMenuTriggerFor]="menu" class="login btn btn-default">Profile</button>
-        <mat-menu #menu="matMenu">
+        <button mat-button [matMenuTriggerFor]="menuSensors" class="login btn btn-default" *ngIf="visibleForManagers()">Sensors</button>
+        <mat-menu #menuSensors="matMenu">
+          <a mat-menu-item href="/sensors/air-pollution">Air pollution</a>
+        </mat-menu>
+        <button mat-button [matMenuTriggerFor]="menuProfile" class="login btn btn-default">Profile</button>
+        <mat-menu #menuProfile="matMenu">
           <a mat-menu-item href="/user-profile">Update information</a>
           <a mat-menu-item href="/change-password">Change password</a>
         </mat-menu>

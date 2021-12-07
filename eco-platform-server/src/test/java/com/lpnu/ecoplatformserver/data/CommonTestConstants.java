@@ -9,12 +9,13 @@ public final class CommonTestConstants {
     public static final String ROLES_URL = BASE_URL + "roles";
     public static final String USER_APPROVALS_URL = BASE_URL + "users/approvals";
     public static final String ECO_PROJECTS_URL = BASE_URL + "eco-projects";
-
+    public static final String AIR_POLLUTION_SENSOR_URL = BASE_URL + "air-pollution-sensor";
 
     public static final Long ORGANISATION_TESTS_STEP = 0L;
     public static final Long AUTH_TESTS_STEP = 100L;
     public static final Long USER_TESTS_STEP = 200L;
     public static final Long ECO_PROJECT_TESTS_STEP = 300L;
+    public static final Long AIR_POLLUTION_SENSOR_TESTS_STEP = 400L;
 
 
     public static final String FIRST_NAME = "Test_FirstName";
@@ -37,5 +38,10 @@ public final class CommonTestConstants {
     public static final String ECO_PROJECT_NAME = "Eco_test";
     public static final String ECO_PROJECT_DESCRIPTION = "Eco_description";
     public static final int ECO_PROJECT_MAX_ALLOWED_POINTS = 3;
+
+    public static final String AIR_POLLUTION_SENSOR_IDENTIFIER = "EXTERNAL_ID";
+    public static final String AIR_POLLUTION_SENSOR_LATITUDE = "30.00";
+    public static final String AIR_POLLUTION_SENSOR_LATITUDE_FOR_UPDATE = "11.11";
+    public static final String AIR_POLLUTION_SENSOR_LONGITUDE = "60.00";
 
 }
