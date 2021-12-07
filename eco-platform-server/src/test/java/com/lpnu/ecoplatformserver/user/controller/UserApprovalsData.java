@@ -29,6 +29,7 @@ final class UserApprovalsData {
             MANAGER_USER_PASSWORD,
             Boolean.TRUE,
             Boolean.FALSE,
+            0,
             null,
             null,
             MANAGER
@@ -63,6 +64,7 @@ final class UserApprovalsData {
                 INHABITANT_USER_PASSWORD,
                 Boolean.TRUE,
                 Boolean.FALSE,
+                0,
                 null,
                 getOrganisationDtoAfterCreation(organisationId),
                 INHABITANT
@@ -78,6 +80,7 @@ final class UserApprovalsData {
                 null,
                 Boolean.FALSE,
                 Boolean.FALSE,
+                0,
                 null,
                 getOrganisationDtoAfterCreation(organisationId),
                 INHABITANT

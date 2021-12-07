@@ -1,6 +1,7 @@
 package com.lpnu.ecoplatformserver.user.dto;
 
 import com.lpnu.ecoplatformserver.organisation.dto.OrganisationSimpleDto;
+import org.hibernate.validator.constraints.Length;
 
 import javax.validation.Valid;
 import javax.validation.constraints.Email;
@@ -9,12 +10,13 @@ import java.time.LocalDateTime;
 
 public record UserDto(
         Long id,
-        @NotEmpty String firstName,
-        @NotEmpty String lastName,
+        @NotEmpty @Length(min = 1) String firstName,
+        @NotEmpty @Length(min = 1) String lastName,
         @NotEmpty @Email String email,
         String password,
         boolean active,
         boolean deleted,
+        int availablePoints,
         LocalDateTime joined,
         OrganisationSimpleDto organisation,
         @Valid RoleDto role

@@ -31,6 +31,8 @@ public class UserEntity {
 
     private boolean deleted;
 
+    private int availablePoints;
+
     private LocalDateTime joined = LocalDateTime.now();
 
     @ManyToOne

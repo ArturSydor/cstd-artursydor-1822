@@ -26,6 +26,10 @@ import {EcoProjectComponent} from './eco-project/eco-project.component';
 import {MatCardModule} from "@angular/material/card";
 import {FlexLayoutModule} from "@angular/flex-layout";
 import {EditorModule} from "@tinymce/tinymce-angular";
+import { UserProfileComponent } from './user/user-profile/user-profile.component';
+import {DatePipe} from "@angular/common";
+import {MatMenuModule} from "@angular/material/menu";
+import { ChangePasswordComponent } from './auth/change-password/change-password.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +42,9 @@ import {EditorModule} from "@tinymce/tinymce-angular";
     HomeComponent,
     DialogComponent,
     JoinRequestsComponent,
-    EcoProjectComponent
+    EcoProjectComponent,
+    UserProfileComponent,
+    ChangePasswordComponent
   ],
   imports: [
     BrowserModule,
@@ -56,9 +62,10 @@ import {EditorModule} from "@tinymce/tinymce-angular";
     MatCardModule,
     FlexLayoutModule,
     EditorModule,
-    NgxWebstorageModule.forRoot()
+    NgxWebstorageModule.forRoot(),
+    MatMenuModule
   ],
-  providers: [{provide: HTTP_INTERCEPTORS, useClass: HttpClientInterceptor, multi: true}],
+  providers: [{provide: HTTP_INTERCEPTORS, useClass: HttpClientInterceptor, multi: true}, DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule {

@@ -14,4 +14,6 @@ public interface UserRepository extends JpaRepository<UserEntity, Long> {
 
     List<UserEntity> findAllByOrganisation_IdAndActiveFalse(Long organisationId);
 
+    List<UserEntity> findAllByActiveIsTrue();
+
 }

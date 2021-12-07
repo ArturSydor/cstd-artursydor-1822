@@ -20,6 +20,7 @@ final class AuthUserData {
             MANAGER_USER_PASSWORD,
             Boolean.TRUE,
             Boolean.FALSE,
+            0,
             null,
             null,
             MANAGER
@@ -54,6 +55,7 @@ final class AuthUserData {
                 INHABITANT_USER_PASSWORD,
                 Boolean.TRUE,
                 Boolean.FALSE,
+                0,
                 null,
                 getOrganisationDtoAfterCreation(organisationId),
                 INHABITANT

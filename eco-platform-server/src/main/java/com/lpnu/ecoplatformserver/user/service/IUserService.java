@@ -11,8 +11,14 @@ public interface IUserService {
 
     UserEntity findOne(Long id);
 
-    UserEntity createUser(UserEntity user);
+    UserEntity findOneByEmail(String email);
+
+    UserDto getOneByEmail(String email);
+
+    void updateUser(UserDto user);
 
     void activateUser(Long id);
+
+    void updatePoints(UserEntity user, int points);
 
 }

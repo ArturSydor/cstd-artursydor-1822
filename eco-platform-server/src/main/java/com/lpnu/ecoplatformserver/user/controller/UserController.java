@@ -28,4 +28,16 @@ public class UserController {
         userService.activateUser(userId);
     }
 
+    @GetMapping
+    @ResponseStatus(HttpStatus.OK)
+    public UserDto getByEmail(@RequestParam String email) {
+        return userService.getOneByEmail(email);
+    }
+
+    @PutMapping
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void updateUser(@RequestBody UserDto userDto) {
+        userService.updateUser(userDto);
+    }
+
 }
