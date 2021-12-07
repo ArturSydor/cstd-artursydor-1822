@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 @Data
 @Entity
 @Table(name = "air_pollution_sensors_data")
-public class AirPollutionSensorDataEntity {
+public class AirPollutionDataEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,18 +22,18 @@ public class AirPollutionSensorDataEntity {
     private LocalDateTime date = LocalDateTime.now();
 
     @Column(scale = 10, precision = 3, nullable = false)
-    private BigDecimal n2o;
+    private BigDecimal n2o = BigDecimal.ZERO;
 
     @Column(scale = 10, precision = 3, nullable = false)
-    private BigDecimal o3;
+    private BigDecimal o3 = BigDecimal.ZERO;
 
     @Column(scale = 10, precision = 3, nullable = false)
-    private BigDecimal co2;
+    private BigDecimal co2 = BigDecimal.ZERO;
 
     @Column(scale = 10, precision = 3, nullable = false)
-    private BigDecimal so2;
+    private BigDecimal so2 = BigDecimal.ZERO;
 
     @Column(scale = 10, precision = 3, nullable = false)
-    private BigDecimal dust;
+    private BigDecimal dust = BigDecimal.ZERO;
 
 }

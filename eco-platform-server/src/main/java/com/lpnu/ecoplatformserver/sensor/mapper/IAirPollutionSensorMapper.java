@@ -7,7 +7,7 @@ import com.lpnu.ecoplatformserver.user.mapper.IUserMapper;
 import org.mapstruct.Mapper;
 
 @Mapper(componentModel = "spring", uses = {IUserMapper.class, IOrganisationMapper.class})
-public interface IAirSensorMapper {
+public interface IAirPollutionSensorMapper {
 
     AirPollutionSensorDto mapToDto(AirPollutionSensorEntity entity);
 

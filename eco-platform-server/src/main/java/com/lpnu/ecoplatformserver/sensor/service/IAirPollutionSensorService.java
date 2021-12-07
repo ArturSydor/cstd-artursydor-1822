@@ -1,5 +1,6 @@
 package com.lpnu.ecoplatformserver.sensor.service;
 
+import com.lpnu.ecoplatformserver.sensor.dto.AirPollutionCalculationResultDto;
 import com.lpnu.ecoplatformserver.sensor.dto.AirPollutionSensorDto;
 import com.lpnu.ecoplatformserver.sensor.entity.AirPollutionSensorEntity;
 
@@ -14,6 +15,8 @@ public interface IAirPollutionSensorService {
     AirPollutionSensorEntity findOne(Long sensorId);
 
     AirPollutionSensorEntity findOneByExternalIdentifier(String identifier);
+
+    AirPollutionCalculationResultDto findTheSensorWithTheWorstAirQuality();
 
     AirPollutionSensorDto create(AirPollutionSensorDto newSensor);
 

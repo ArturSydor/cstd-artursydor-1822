@@ -1,5 +1,6 @@
 package com.lpnu.ecoplatformserver.sensor.controller;
 
+import com.lpnu.ecoplatformserver.sensor.dto.AirPollutionCalculationResultDto;
 import com.lpnu.ecoplatformserver.sensor.dto.AirPollutionSensorDto;
 import com.lpnu.ecoplatformserver.sensor.service.IAirPollutionSensorService;
 import lombok.RequiredArgsConstructor;
@@ -27,6 +28,13 @@ public class AirPollutionSensorController {
     public AirPollutionSensorDto getOne(@PathVariable Long id) {
         return airPollutionSensorService.getOne(id);
     }
+
+    @GetMapping("/report")
+    @ResponseStatus(HttpStatus.OK)
+    public AirPollutionCalculationResultDto getSensorWithLowestAirQuality() {
+        return airPollutionSensorService.findTheSensorWithTheWorstAirQuality();
+    }
+
 
     @PostMapping
     @ResponseStatus(HttpStatus.OK)

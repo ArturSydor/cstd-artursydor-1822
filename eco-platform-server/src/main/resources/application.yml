@@ -12,3 +12,12 @@ spring:
 
   flyway:
     enabled: false
+
+  kafka:
+    bootstrap-servers: "localhost:9092"
+
+sensor:
+  air-pollution:
+    topic: "sensor.air-pollution"
+    consumer:
+      group: "air-pollution"
