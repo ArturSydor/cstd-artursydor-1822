@@ -32,6 +32,7 @@ import {MatMenuModule} from "@angular/material/menu";
 import { ChangePasswordComponent } from './auth/change-password/change-password.component';
 import { AirPollutionSensorComponent } from './sensor/air-pollution-sensor/air-pollution-sensor.component';
 import { AirPollutionSensorEditComponent } from './sensor/air-pollution-sensor-edit/air-pollution-sensor-edit.component';
+import { AirPollutionReportComponent } from './sensor/air-pollution-report/air-pollution-report.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import { AirPollutionSensorEditComponent } from './sensor/air-pollution-sensor-e
     UserProfileComponent,
     ChangePasswordComponent,
     AirPollutionSensorComponent,
-    AirPollutionSensorEditComponent
+    AirPollutionSensorEditComponent,
+    AirPollutionReportComponent
   ],
   imports: [
     BrowserModule,

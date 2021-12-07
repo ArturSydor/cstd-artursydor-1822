@@ -1,0 +1,46 @@
+<div class="content">
+  <div class="rg-input" *ngIf="!isReportDone">
+    <h1>IT is not possible to do report at hte moment!</h1>
+  </div>
+  <div class="container" *ngIf="isReportDone">
+    <div class="rg-input">
+      <h1>Sensor identifier: {{reportData.sensor.externalIdentifier}}</h1>
+      <h3>Latitude: {{reportData.sensor.latitude}}</h3>
+      <h3>Longitude: {{reportData.sensor.longitude}}</h3>
+    </div>
+    <table class="table table-success table-striped">
+      <thead>
+      <tr>
+        <th scope="col"></th>
+        <th scope="col">Max allowed values</th>
+        <th scope="col">Current values</th>
+      </tr>
+      <tr>
+        <td>N2O</td>
+        <td>{{reportData.norma.n2o}}</td>
+        <td>{{reportData.sensorData.n2o}}</td>
+      </tr>
+      <tr>
+        <td>O3</td>
+        <td>{{reportData.norma.o3}}</td>
+        <td>{{reportData.sensorData.o3}}</td>
+      </tr>
+      <tr>
+        <td>CO2</td>
+        <td>{{reportData.norma.co2}}</td>
+        <td>{{reportData.sensorData.co2}}</td>
+      </tr>
+      <tr>
+        <td>SO2</td>
+        <td>{{reportData.norma.so2}}</td>
+        <td>{{reportData.sensorData.so2}}</td>
+      </tr>
+      <tr>
+        <td>Dust</td>
+        <td>{{reportData.norma.dust}}</td>
+        <td>{{reportData.sensorData.dust}}</td>
+      </tr>
+      </thead>
+    </table>
+  </div>
+</div>

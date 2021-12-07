@@ -12,6 +12,7 @@ import {UserProfileComponent} from "./user/user-profile/user-profile.component";
 import {ChangePasswordComponent} from "./auth/change-password/change-password.component";
 import {AirPollutionSensorComponent} from "./sensor/air-pollution-sensor/air-pollution-sensor.component";
 import {AirPollutionSensorEditComponent} from "./sensor/air-pollution-sensor-edit/air-pollution-sensor-edit.component";
+import {AirPollutionReportComponent} from "./sensor/air-pollution-report/air-pollution-report.component";
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -25,7 +26,8 @@ const routes: Routes = [
   {path: 'user-profile', component: UserProfileComponent, canActivate: [AuthGuard]},
   {path: 'change-password', component: ChangePasswordComponent, canActivate: [AuthGuard]},
   {path: 'sensors/air-pollution', component: AirPollutionSensorComponent, canActivate: [AuthGuard]},
-  {path: 'sensors/air-pollution-edit', component: AirPollutionSensorEditComponent, canActivate: [AuthGuard]}
+  {path: 'sensors/air-pollution-edit', component: AirPollutionSensorEditComponent, canActivate: [AuthGuard]},
+  {path: 'sensors/air-pollution-report', component: AirPollutionReportComponent, canActivate: [AuthGuard]}
 ];
 
 @NgModule({

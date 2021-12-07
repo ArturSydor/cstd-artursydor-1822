@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {AirPollutionSensorPayload} from "./air-pollution-sensor-payload";
+import {AirPollutionQualityCalculationReportPayload} from "./air-pollution-quality-calculation-report-payload";
 
 @Injectable({
   providedIn: 'root'
@@ -18,6 +19,10 @@ export class AirPollutionSensorService {
 
   getOne(id: BigInteger): Observable<AirPollutionSensorPayload> {
     return this.httpClient.get<AirPollutionSensorPayload>(this.url + '/' + id);
+  }
+
+  getReport(): Observable<AirPollutionQualityCalculationReportPayload> {
+    return this.httpClient.get<AirPollutionQualityCalculationReportPayload>(this.url + '/report');
   }
 
   create(newSensor: AirPollutionSensorPayload): Observable<AirPollutionSensorPayload> {
